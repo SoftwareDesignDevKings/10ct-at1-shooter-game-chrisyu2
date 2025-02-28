@@ -4,6 +4,7 @@ import random
 import os
 
 import app
+from player import Player
 
 class Game:
     def __init__(self):
@@ -30,6 +31,7 @@ class Game:
         self.reset_game()
         
     def reset_game(self):
+        self.player = Player(app.WIDTH // 2, app.HEIGHT // 2, self.assets)
         self.game_over = False
 
     def create_random_background(self, width, height, floor_tiles):
@@ -65,6 +67,8 @@ class Game:
                  self.running = False
 
     def update(self):
+        self.player.handle_input()
+        self.player.update()
         """Update the game state (player, enemies, etc.)."""
         pass
 
@@ -72,9 +76,12 @@ class Game:
         """Render all game elements to the screen."""
         pass
         self.screen.blit(self.background, (0, 0))
+        if not self.game_over:
+            self.player.draw(self.screen) 
+
         pygame.display.flip()
 
-        #comment tutorial
+        #hehehaha
         
 
 

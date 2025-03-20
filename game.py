@@ -4,6 +4,7 @@ import random
 import os
 
 import app
+from coin import Coin
 from player import Player
 from enemy import Enemy
 import math
@@ -12,7 +13,7 @@ class Game:
     def __init__(self):
         pygame.init() 
         self.screen = pygame.display.set_mode((app.WIDTH, app.HEIGHT))
-        pygame.display.set_caption("Shooter")
+        pygame.display.set_caption("School Time Showdown")
         self.clock = pygame.time.Clock()
       
         self.assets = app.load_assets()
@@ -26,16 +27,23 @@ class Game:
 
         self.running = True
         self.game_over = False
-
+        
         self.enemies = []
         self.enemy_spawn_timer = 0
-        self.enemy_spawn_interval = 60
+        self.enemy_spawn_interval =60
         self.enemies_per_spawn = 1
+
+        self.coins = []
 
         self.reset_game()
         
     def reset_game(self):
         self.player = Player(app.WIDTH // 2, app.HEIGHT // 2, self.assets)
+        self.enemies = []
+        self.enemy_spawn_timer = 0
+        self.enemies_per_spawn = 1
+        
+        self.coins = []
         self.game_over = False
         
 
@@ -92,15 +100,19 @@ class Game:
         
         self.check_player_enemy_collisions()
         self.check_bullet_enemy_collisions()
+        self.spawn_enemies()
 
         if self.player.health <= 0:
             self.game_over = True
             return
 
-        self.spawn_enemies()
+        
         
     def draw(self):
         self.screen.blit(self.background, (0, 0))
+
+        for coin in self.coins:
+            coin.draw(self.screen)
 
         if not self.game_over:
             self.player.draw(self.screen) 
@@ -114,6 +126,7 @@ class Game:
 
         if self.game_over:
             self.draw_game_over_screen()
+        
 
         pygame.display.flip()
 
@@ -188,7 +201,11 @@ class Game:
             for enemy in self.enemies:
                 if bullet.rect.colliderect(enemy.rect):
                     self.player.bullets.remove(bullet)
+
+                    new_coin = Coin(enemy.x, enemy.y)
+                    self.coins.append(new_coin)
                     self.enemies.remove(enemy)
+                    break
       
         
 

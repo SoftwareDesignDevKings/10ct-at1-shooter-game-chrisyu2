@@ -11,7 +11,7 @@ class Enemy:
         self.frames = enemy_assets[enemy_type]
         self.frame_index = 0
         self.animation_timer = 0
-        self.animation_speed = 8
+        self.animation_speed = 10
         self.image = self.frames[self.frame_index]
         self.rect = self.image.get_rect(center=(self.x, self.y))
         
@@ -43,7 +43,6 @@ class Enemy:
         
         # Updates enemy position
         self.rect.center = (self.x, self.y)
-        pass
 
     def apply_knockback(self):
         step = min(app.ENEMY_KNOCKBACK_SPEED, self.knockback_dist_remaining)
@@ -55,11 +54,9 @@ class Enemy:
         if self.knockback_dx < 0:
             self.facing_left = True
         else:
-                self.facing_left = False
+            self.facing_left = False
 
         self.rect.center = (self.x, self.y)
-        # TODO: Update facing direction based on knockback direction
-        pass
 
     def animate(self):
         self.animation_timer += 1
@@ -70,7 +67,6 @@ class Enemy:
             self.image = self.frames[self.frame_index]
             self.rect = self.image.get_rect()
             self.rect.center = center
-        pass
 
     def draw(self, surface):
         if self.facing_left:
@@ -87,4 +83,3 @@ class Enemy:
             self.knockback_dx = dx / length
             self.knockback_dy = dy / length
             self.knockback_dist_remaining = dist
-        pass

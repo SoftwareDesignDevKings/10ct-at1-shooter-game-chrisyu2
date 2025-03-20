@@ -14,7 +14,7 @@ class Player:
         self.state = "idle"
         self.frame_index = 0
         self.animation_timer = 0
-        self.animation_speed = 8
+        self.animation_speed = 10
 
         self.image = self.animations[self.state][self.frame_index]
         self.rect = self.image.get_rect(center=(self.x, self.y))
@@ -65,8 +65,7 @@ class Player:
             self.facing_left = True
         elif vel_x > 0:
             self.facing_left = False
-        pass
-
+    
     def update(self):
 
         for bullet in self.bullets:
@@ -95,7 +94,6 @@ class Player:
 
         for bullet in self.bullets:
             bullet.draw(surface)
-        pass
 
     def take_damage(self, amount):
         self.health = max(0, self.health - amount)
@@ -135,3 +133,6 @@ class Player:
 
     def shoot_toward_enemy(self, enemy):
         self.shoot_toward_position(enemy.x, enemy.y)
+    
+    def add_xp(self,amount):
+        self.xp +=amount

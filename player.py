@@ -14,12 +14,14 @@ class Player:
         self.state = "idle"
         self.frame_index = 0
         self.animation_timer = 0
-        self.animation_speed = 10
+        self.animation_speed = 8
 
         self.image = self.animations[self.state][self.frame_index]
         self.rect = self.image.get_rect(center=(self.x, self.y))
         self.facing_left = False
 
+        self.level = 1
+        self.xp = 0
         self.health = 5
 
         self.bullet_speed = 10
@@ -28,6 +30,8 @@ class Player:
         self.shoot_cooldown = 20
         self.shoot_timer = 0
         self.bullets = []
+
+        
         
 
     def handle_input(self):
@@ -37,14 +41,14 @@ class Player:
 
         vel_x, vel_y = 0, 0
 
-        if keys[pygame.K_LEFT]:
+        if keys[pygame.K_a]:
             # Move character left
             vel_x -= self.speed
-        if keys[pygame.K_RIGHT]:
+        if keys[pygame.K_d]:
             vel_x += self.speed
-        if keys[pygame.K_UP]:
+        if keys[pygame.K_w]:
             vel_y -= self.speed
-        if keys[pygame.K_DOWN]:
+        if keys[pygame.K_s]:
             vel_y += self.speed
 
         self.x += vel_x
@@ -67,7 +71,7 @@ class Player:
             self.facing_left = False
     
     def update(self):
-
+        
         for bullet in self.bullets:
             bullet.update()
             if bullet.y < 0 or bullet.y > app.HEIGHT or bullet.x < 0 or bullet.x > app.WIDTH:
@@ -135,4 +139,4 @@ class Player:
         self.shoot_toward_position(enemy.x, enemy.y)
     
     def add_xp(self,amount):
-        self.xp +=amount
+        self.xp += amount

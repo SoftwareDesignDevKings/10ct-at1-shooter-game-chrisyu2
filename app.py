@@ -1,27 +1,30 @@
 # app.py
 import pygame
 import os
+from pygame import mixer
+
 
 # --------------------------------------------------------------------------
 #                               CONSTANTS
 # --------------------------------------------------------------------------
 
-WIDTH = 800
-HEIGHT = 600
+WIDTH = 1400
+HEIGHT = 900
 FPS = 60
 
-PLAYER_SPEED = 3
-DEFAULT_ENEMY_SPEED = 1
+PLAYER_SPEED = 4
+DEFAULT_ENEMY_SPEED = 2
 
 SPAWN_MARGIN = 50
 
 ENEMY_SCALE_FACTOR = 2
 PLAYER_SCALE_FACTOR = 2
 FLOOR_TILE_SCALE_FACTOR = 2
-HEALTH_SCALE_FACTOR = 3
+HEALTH_SCALE_FACTOR = 6 
 
-PUSHBACK_DISTANCE = 80
+PUSHBACK_DISTANCE = 100
 ENEMY_KNOCKBACK_SPEED = 5
+
 
 # --------------------------------------------------------------------------
 #                       ASSET LOADING FUNCTIONS
@@ -63,6 +66,8 @@ def load_assets():
         "orc":    load_frames("orc",    4, scale_factor=ENEMY_SCALE_FACTOR),
         "undead": load_frames("undead", 4, scale_factor=ENEMY_SCALE_FACTOR),
         "demon":  load_frames("demon",  4, scale_factor=ENEMY_SCALE_FACTOR),
+        "crayon":  load_frames("crayon",  4, scale_factor=ENEMY_SCALE_FACTOR),
+        "bluecrayon":  load_frames("bluecrayon",  4, scale_factor=ENEMY_SCALE_FACTOR),
     }
 
     # Player
@@ -80,4 +85,9 @@ def load_assets():
     # Example coin image (uncomment if you have coin frames / images)
     # assets["coin"] = pygame.image.load(os.path.join("assets", "coin.png")).convert_alpha()
 
+    pygame.mixer.music.load("assets/music.mp3")
+    pygame.mixer.music.set_volume(0.5)
+    pygame.mixer.music.play(-1,0.0,5000)
+
     return assets
+

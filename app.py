@@ -8,8 +8,8 @@ from pygame import mixer
 #                               CONSTANTS
 # --------------------------------------------------------------------------
 
-WIDTH = 1400
-HEIGHT = 900
+WIDTH = 1500
+HEIGHT = 920
 FPS = 60
 
 PLAYER_SPEED = 4
@@ -18,9 +18,9 @@ DEFAULT_ENEMY_SPEED = 2
 SPAWN_MARGIN = 50
 
 ENEMY_SCALE_FACTOR = 2
-PLAYER_SCALE_FACTOR = 2
+PLAYER_SCALE_FACTOR = 3
 FLOOR_TILE_SCALE_FACTOR = 2
-HEALTH_SCALE_FACTOR = 6 
+HEALTH_SCALE_FACTOR = 6
 
 PUSHBACK_DISTANCE = 100
 ENEMY_KNOCKBACK_SPEED = 5

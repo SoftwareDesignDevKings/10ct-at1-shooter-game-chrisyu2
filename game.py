@@ -162,7 +162,7 @@ class Game:
 
 
     def spawn_enemies(self):
-        self.enemy_spawn_timer += 1
+        self.enemy_spawn_timer += 1*3*self.player.level
         if self.enemy_spawn_timer >= self.enemy_spawn_interval:
             self.enemy_spawn_timer = 0
 

@@ -14,7 +14,7 @@ class Player:
         self.state = "idle"
         self.frame_index = 0
         self.animation_timer = 0
-        self.animation_speed = 8
+        self.animation_speed = 7
 
         self.image = self.animations[self.state][self.frame_index]
         self.rect = self.image.get_rect(center=(self.x, self.y))

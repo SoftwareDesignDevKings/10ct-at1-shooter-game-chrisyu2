@@ -11,7 +11,7 @@ class Enemy:
         self.frames = enemy_assets[enemy_type]
         self.frame_index = 0
         self.animation_timer = 0
-        self.animation_speed = 10
+        self.animation_speed = 8
         self.image = self.frames[self.frame_index]
         self.rect = self.image.get_rect(center=(self.x, self.y))
         

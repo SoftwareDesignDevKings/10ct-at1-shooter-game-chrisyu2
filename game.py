@@ -318,3 +318,5 @@ class Game:
         prompt_surf = self.font_small.render("Press R to Play Again or ESC to Quit", True, (255, 255, 255))
         prompt_rect = prompt_surf.get_rect(center=(app.WIDTH // 2, app.HEIGHT // 2 + 20))
         self.screen.blit(prompt_surf, prompt_rect)
+
+#yes

@@ -140,3 +140,5 @@ class Player:
     
     def add_xp(self,amount):
         self.xp += amount
+
+#yes

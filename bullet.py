@@ -19,3 +19,6 @@ class Bullet:
     
     def draw(self, surface):
         surface.blit(self.image, self.rect)
+
+
+#yes
